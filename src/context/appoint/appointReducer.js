@@ -7,6 +7,7 @@ import {
   SET_CURRENT_STEP,
   SET_SELECT_DATE
 } from '../types';
+import { formatDate } from  '../../components/shared/misc';
 
 const appointReducer = (state, action) => {
   switch (action.type) {
@@ -36,9 +37,12 @@ const appointReducer = (state, action) => {
         selectedTime: action.payload
       };
       case SET_SELECT_DATE:
+        if(action.payload === ''){
+          action.payload = formatDate(new Date());
+        }
         return {
           ...state,
-          selectDate: action.payload
+          selectedDate: action.payload
         };
     case SET_ORDER_TIME:
       const { order } = state

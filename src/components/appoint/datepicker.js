@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import DatePicker  from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getYear,getMonth} from "date-fns";
@@ -10,23 +10,20 @@ const Datepicker = () => {
 
     const appointContext = useContext(AppointContext);
     const { orderedates, timeArr,setSelectedTime,setSelectedDate} = appointContext;
-    //selectedDate
-    //selectedTime
 
     const excludeDates =[];
 
-    var arrAppoint = [];
+    const arrAppoint = [];
 
-  //   useEffect(() => {
+    useEffect(() => {
 
-  //     //eslint-disable-next-line
-  // }, [currentItem,selectedDate]);
+      //eslint-disable-next-line
+    }, []);
 
     const getDate = () =>{ 
         let map = new Map();
         let array = []; 
         let arrTime =[];
-        
 
         //Remove duplicate data
         for (let i = 0; i < orderedates.length; i++) {
@@ -60,35 +57,34 @@ const Datepicker = () => {
     getDate();
 
     const [startDate, setStartDate] = useState(new Date());
-    // const [minDate, setMinDate] = useState(new Date());
     const minDate = new Date()
     const [selectDate, setSelectDate] = useState(new Date());
     
-    const handleCheckInDate = (date) => {
+    const handleChange = (date) => {
 
         setStartDate(date);
-        
 
-        let fData = formatDate(date);
+        let fDate = formatDate(date);
 
-        setSelectDate(fData);
-        setSelectedDate(fData)
+        setSelectDate(fDate);
+        console.log("handleChange"+fDate);
+        setSelectedDate(fDate);
        
         let currentClickDate = [];
        
 
         for (let i = 0; i < arrAppoint.length; i++) {
-          if(arrAppoint[i].date === fData) {  
+          if(arrAppoint[i].date === fDate) {  
             currentClickDate.push(arrAppoint[i].time);
           }
-      }
+        }
 
-      setSelectedTime(currentClickDate);
+        setSelectedTime(currentClickDate);
 
     };
 
     // const handleCheckOutDate = (date) => {
-    //   // setCheckOutDate(date);
+     
     // };
     
     const years = ['2021','2022'] ;
@@ -162,8 +158,10 @@ const Datepicker = () => {
         // onChange={(date) => setStartDate(date)}
         minDate={minDate}
         excludeDates={excludeDates}
-        onChange={handleCheckInDate}
+        onChange={handleChange}
         inline
+        // selected={startDate} 
+        dateFormat="Pp"
       />
 
         <div>

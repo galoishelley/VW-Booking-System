@@ -3,14 +3,15 @@ import AppointContext from '../../context/appoint/appointContext';
 import AlertContext from '../../context/alert/alertContext';
 import { Link } from 'react-router-dom';
 
-const Timepicker = (selectDate) => {
+
+const Timepicker = React.memo((selectDate) => {
 
     const alertContext = useContext(AlertContext);
 
     const { setAlert } = alertContext;
 
     const appointContext = useContext(AppointContext);
-    const { timeArr, currentItem, selectedTime,setOrderItem,setCurrentStep} = appointContext;
+    const { timeArr, currentItem, selectedTime,setOrderItem,setCurrentStep,selectedDate} = appointContext;
 
     var tmpTime =  new Array(timeArr);
 
@@ -20,18 +21,20 @@ const Timepicker = (selectDate) => {
         for(let i=0; i<occupied__slots.length; i++){
             const index = tmpTime[0].indexOf("4:00pm");
                 if (index > -1) {
-                    tmpTime[0].splice(index, 1);
+                    tmpTime[0].splice(index, 1);    
                 }
         }
         //eslint-disable-next-line
-    }, [selectDate]);
+    }, [selectedDate]);
+
+    console.log('Timepicker:'+selectedDate);
 
     const [stime, setStime] = useState({
             mark:'appointInfo',
             spaname: currentItem.spaname,
             spanote: currentItem.spanote,
             app_time: '',
-            app_date: selectDate.selectDate
+            app_date: selectedDate
     });
 
     const onChange = e => setStime({ ...stime, [e.target.name]: e.target.value });
@@ -65,6 +68,6 @@ const Timepicker = (selectDate) => {
             </div>
         </div>
     );
-}
+})
 
 export default Timepicker;

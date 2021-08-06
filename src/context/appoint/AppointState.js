@@ -115,7 +115,7 @@ const AppointState = props => {
       spanote: ''
     },
     showDataPicker: null,
-    selectedDate:null,
+    selectedDate:'',
     selectedTime: [],
     order:
     {
@@ -153,7 +153,7 @@ const AppointState = props => {
   };
 
   //Set DataPicker
-  const setShowDataPicker = () => {
+  const setShowDatePicker = () => {
     dispatch({ type: SET_DATA_PICKER, payload: true });
   };
 
@@ -186,7 +186,7 @@ const AppointState = props => {
         currentStep: state.currentStep,
         selectedDate: state.selectedDate,
         setCurrentItem,
-        setShowDataPicker,
+        setShowDatePicker,
         setSelectedTime,
         setOrderItem,
         keepSelectedItem,
