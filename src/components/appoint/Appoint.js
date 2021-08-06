@@ -17,7 +17,7 @@ const Appoint = () => {
         <Fragment>
             {items.map(item => (
                 <div key={item.spaname}>
-                    <AppointItem item={item}/>
+                    <AppointItem item={item} />
                 </div>
             ))}
         </Fragment>

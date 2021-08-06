@@ -3,40 +3,21 @@ import AppointContext from './appointContext';
 import appointReducer from './appointReducer';
 
 import {
-  SET_CURRENT_ITEM,
   SET_DATA_PICKER,
   SET_SELECTED_TIME,
-  SET_ORDER_TIME,
   KEEP_SELECTED_ITEM,
   SET_CURRENT_STEP,
-  SET_SELECT_DATE
+  SET_ORDER_NAME,
+  SET_ORDER_DATE,
+  SET_ORDER_TIME,
+  SET_ORDER_PERSONAL_INFO,
+  CLEAR_ORDER,
+  SET_TMP_TIME,
+  GET_ORDEREDTIME
 } from '../types';
 
 const AppointState = props => {
   const initialState = {
-    appointments: [
-      {
-        username: 'grace',
-        spaname: 'Physiotherapy',
-        spanote: '30 minutes@ $45.00',
-        app_time: '10:30am',
-        app_date: '08-20-2021',
-      },
-      {
-        username: 'alex',
-        spaname: 'chiro',
-        spanote: '30 minutes@ $100.00',
-        app_time: '12:30am',
-        app_date: '08-20-2021',
-      },
-      {
-        username: 'andrew',
-        spaname: 'Aroma Therapy',
-        spanote: '30 minutes@ $45.00',
-        app_time: '4:00pm',
-        app_date: '08-06-2021',
-      }
-    ],
     items: [
       {
         spaname: 'Physiotherapy',
@@ -105,34 +86,31 @@ const AppointState = props => {
         time: '4:00pm'
       },
       {
-        date: '08-06-2021',
+        date: '08-10-2021',
         time: '4:00pm'
+      },
+      {
+        date: '08-10-2021',
+        time: '3:00pm'
       }
     ],
     timeArr: ['10:00am', '10:30am', '11:00am', '11:30am', '12:00am', '12:30am', '1:00pm', '1:30pm', '2:00pm', '2:30pm', '3:00pm', '3:30pm', '4:00pm'],
-    currentItem: {
-      spaname: '',
-      spanote: ''
-    },
     showDataPicker: null,
-    selectedDate:'',
     selectedTime: [],
     order:
     {
-        appointInfo:{
-          spaname: '',
-          spanote: '',
-          app_time: '',
-          app_date: ''
-        },
-        personalInfo:{
-          fname: '',
-          lname: '',
-          phone: '',
-          email: ''
-        }
+      spaname: '',
+      spanote: '',
+      app_time: '',
+      app_date: '',
+      fname: '',
+      lname: '',
+      phone: '',
+      email: ''
     },
-      currentStep:1
+    currentStep: 1,
+    tmpTime:'',
+    orderedtime:[ '11:00am', '11:30am','12:00am', '12:30am']
   };
 
   const [state, dispatch] = useReducer(appointReducer, initialState);
@@ -147,51 +125,74 @@ const AppointState = props => {
     dispatch({ type: SET_CURRENT_STEP, payload: currentStep });
   };
 
-  //Set Current Item
-  const setCurrentItem = currentItem => {
-    dispatch({ type: SET_CURRENT_ITEM, payload: currentItem });
-  };
-
   //Set DataPicker
   const setShowDatePicker = () => {
     dispatch({ type: SET_DATA_PICKER, payload: true });
   };
 
   //Set DataPicker
-  const setSelectedTime = selectedTime => {
-    dispatch({ type: SET_SELECTED_TIME, payload: selectedTime });
+  const setSelectedTime = time => {
+    dispatch({ type: SET_SELECTED_TIME, payload: time });
   };
 
-  //Set order
-  const setOrderItem = order => {
-    dispatch({ type: SET_ORDER_TIME, payload: order });
+  //set order name
+  const setOrderName = item => {
+    dispatch({ type: SET_ORDER_NAME, payload: item });
   };
 
-  //Set select date
-  const setSelectedDate = selectedDate => {
-    dispatch({ type: SET_SELECT_DATE, payload: selectedDate });
+  //set order date
+  const setOrderDate = date => {
+    dispatch({ type: SET_ORDER_DATE, payload: date });
   };
+
+  //set order time 
+  const setOrderTime = time => {
+    dispatch({ type: SET_ORDER_TIME, payload: time });
+  };
+
+  //set Order Personal Info
+  const setOrderPersonalInfo = info => {
+    dispatch({ type: SET_ORDER_PERSONAL_INFO, payload: info });
+  };
+
+  //clear order
+  const clearOrder =()=>{
+    dispatch({ type: CLEAR_ORDER});
+  }
+
+  //set temp time
+  const setTmpTime =(times)=>{
+    dispatch({ type: SET_TMP_TIME, payload: times});
+  }
+
+  //get ordered time
+  const getOrderedTime =(times)=>{
+    dispatch({ type: GET_ORDEREDTIME, payload: times});
+  }
 
   return (
     <AppointContext.Provider
       value={{
-        appointments: state.appointments,
         items: state.items,
         orderedates: state.orderedates,
         timeArr: state.timeArr,
-        currentItem: state.currentItem,
         showDataPicker: state.showDataPicker,
         selectedTime: state.selectedTime,
         order: state.order,
         currentStep: state.currentStep,
-        selectedDate: state.selectedDate,
-        setCurrentItem,
+        tmpTime: state.tmpTime,
+        orderedtime: state.orderedtime,
         setShowDatePicker,
         setSelectedTime,
-        setOrderItem,
         keepSelectedItem,
         setCurrentStep,
-        setSelectedDate
+        setOrderName,
+        setOrderDate,
+        setOrderTime,
+        setOrderPersonalInfo,
+        clearOrder,
+        setTmpTime,
+        getOrderedTime
       }}
     >
       {props.children}

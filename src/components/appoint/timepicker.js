@@ -1,40 +1,42 @@
-import React, { useContext,useEffect,useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AppointContext from '../../context/appoint/appointContext';
 import AlertContext from '../../context/alert/alertContext';
 import { Link } from 'react-router-dom';
+// import { cTime } from '../shared/misc';
 
-
-const Timepicker = React.memo((selectDate) => {
+const Timepicker = () => {
 
     const alertContext = useContext(AlertContext);
 
     const { setAlert } = alertContext;
 
     const appointContext = useContext(AppointContext);
-    const { timeArr, currentItem, selectedTime,setOrderItem,setCurrentStep,selectedDate} = appointContext;
+    const { timeArr, selectedTime, setCurrentStep, order, setOrderTime, tmpTime, setTmpTime } = appointContext;
 
-    var tmpTime =  new Array(timeArr);
+    const t = tmpTime;
 
+    //const times
     useEffect(() => {
 
-        const occupied__slots= selectedTime;
-        for(let i=0; i<occupied__slots.length; i++){
-            const index = tmpTime[0].indexOf("4:00pm");
-                if (index > -1) {
-                    tmpTime[0].splice(index, 1);    
-                }
-        }
-        //eslint-disable-next-line
-    }, [selectedDate]);
+        setTmpTime(timeArr);
 
-    console.log('Timepicker:'+selectedDate);
+        //delete have booked time
+        selectedTime.map(time => {
+            for (let i = 0; i < time.length; i++) {
+                const index = t.indexOf(time[i]);
+                if (index > -1) {
+                    t.splice(index, 1);
+                }
+            }
+        });
+
+        setTmpTime(t);
+
+        //eslint-disable-next-line
+    }, [order.app_date, selectedTime]);
 
     const [stime, setStime] = useState({
-            mark:'appointInfo',
-            spaname: currentItem.spaname,
-            spanote: currentItem.spanote,
-            app_time: '',
-            app_date: selectedDate
+        app_time: '',
     });
 
     const onChange = e => setStime({ ...stime, [e.target.name]: e.target.value });
@@ -42,25 +44,26 @@ const Timepicker = React.memo((selectDate) => {
     const { app_time } = stime;
 
     const onSet = e => {
-        if(app_time==='')
-        {
+        if (app_time === '') {
             e.preventDefault()
             setAlert('please select one time', 'test');
             return;
         };
 
-        setOrderItem(stime);
+        //set order time
+        setOrderTime(stime);
+
         setCurrentStep(2);
     }
 
     return (
         <div className="Timepicker">
             <ul>
-                { 
-                    tmpTime[0].map(time =>(
-                        <li key={time}><input type="radio" value={ time} id={time} name="app_time" onChange={onChange} /><label htmlFor={time}>{time}</label></li>
+                {
+                    t && t.map(time => (
+                        <li key={time}><input type="radio" value={time} id={time} name="app_time" onChange={onChange} /><label htmlFor={time}>{time}</label></li>
                     ))
-                    
+
                 }
             </ul>
             <div>
@@ -68,6 +71,6 @@ const Timepicker = React.memo((selectDate) => {
             </div>
         </div>
     );
-})
+}
 
 export default Timepicker;

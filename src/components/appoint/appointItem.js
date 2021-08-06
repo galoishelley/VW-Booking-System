@@ -3,23 +3,28 @@ import React, { useContext } from 'react'
 import PropTypes from 'prop-types';
 import AppointContext from '../../context/appoint/appointContext';
 import Datepicker from './datepicker';
-import { formatDate } from  '../shared/misc';
+import { formatDate,cTime } from '../shared/misc';
 
 const AppointItem = ({ item }) => {
 
 
     const appointContext = useContext(AppointContext);
-    const { setCurrentItem, setShowDatePicker, showDataPicker, keepSelectedItem,setSelectedDate} = appointContext;
+    const { setOrderName, setShowDatePicker, showDataPicker, keepSelectedItem, setOrderDate, setTmpTime,setSelectedTime } = appointContext;
     const { spaname, spanote } = item;
 
     const setItem = () => {
-        setCurrentItem({ spaname: spaname, spanote: spanote });
+        //set order name
+        setOrderName({ spaname: spaname, spanote: spanote });
         //show date picker when you click item
-        setShowDatePicker(1);  
+        setShowDatePicker(1);
         //make a current date if you did not click datepicker
-        setSelectedDate(formatDate(new Date()));
-        //keep selected item when you click items.
+        setOrderDate(formatDate(new Date()));
+        //keep selected item when you click items. for nav bar
         keepSelectedItem(spaname);
+        //set const time for show times list
+        setTmpTime(cTime);
+        //init selected time list
+        setSelectedTime([]);
     }
 
     return (

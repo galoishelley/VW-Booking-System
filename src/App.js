@@ -20,19 +20,19 @@ const App = () => {
   return (
     <AppointState>
       <AlertState>
-      <Router>
-        <Fragment>
-          <div className="container">
-          <Navbar />
-            <Alerts />
-            <Switch>
-              <Route exact path='/' component={Appoint} />
-              <Route exact path='/info' component={Info} />
-              <Route exact path='/comfirm' component={Comfirm} />
-            </Switch>
-          </div>
-        </Fragment>
-      </Router>
+        <Router>
+          <Fragment>
+            <div className="container">
+              <Navbar />
+              <Alerts />
+              <Switch>
+                <Route exact path='/' component={Appoint} />
+                <Route exact path='/info' component={Info} />
+                <Route exact path='/comfirm' component={Comfirm} />
+              </Switch>
+            </div>
+          </Fragment>
+        </Router>
       </AlertState>
     </AppointState>
   );

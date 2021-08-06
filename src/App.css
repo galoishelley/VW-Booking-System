@@ -7,7 +7,7 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
-  --text-color:rgb(213,227,207);
+  --text-color: rgb(213, 227, 207);
 }
 
 * {
@@ -29,8 +29,6 @@ body {
   padding: 100px;
 }
 
-
-
 h1,
 h2,
 h3,
@@ -38,7 +36,7 @@ h4 {
   font-family: 'Merriweather', serif;
 }
 
-h4{
+h4 {
   font-size: 16px;
   margin-bottom: 20px;
 }
@@ -65,7 +63,7 @@ img {
   font-size: 3rem;
   line-height: 1.2;
   margin-bottom: 2rem;
-  
+
 }
 
 
@@ -105,50 +103,41 @@ img {
   border-bottom: solid 2px black;
 }
 
-
-/* .navbar a:hover {
-    color: var(--light-color);
-  } */
-/*   
-  .navbar .welcome span {
-    margin-right: 0.6rem;
-  } */
-
-
-
-/*Choose apointment */
-.apointmentlist {
-  /* border: 1px solid black;
-    margin-top: .2rem; */
-}
-
 .apointmentlist ul li {
   border: 1px solid black;
   margin-top: .2rem;
-  
+
 }
 
 
-.Timepicker ul li label{
+.Timepicker ul li label {
   font-size: 14px;
   cursor: pointer;
 }
-.Timepicker ul li input[type='radio']{
+
+.Timepicker ul li input[type='radio'] {
   display: inline;
   width: 5%;
   cursor: pointer;
-  
+
 }
-.react-datepicker{
+
+.react-datepicker {
   margin: 30px 0;
 }
+
 .Info {
   margin-top: 1.2rem;
 }
 
-.Info Link{
+.Info Link {
   text-decoration: none;
 }
+
+.Info a {
+  color:gray;
+}
+
 
 /* Forms */
 form {
@@ -184,15 +173,18 @@ input[type='submit'],
 button {
   font: inherit;
 }
-.form>label{
+
+.form>label {
   display: block;
 }
-input[name='fname']{
+
+input[name='fname'] {
   display: inline;
   width: 29%;
   margin-right: 1%;
 }
-input[name='lname']{
+
+input[name='lname'] {
   display: inline;
   width: 70%;
 }
@@ -230,22 +222,27 @@ input[name='lname']{
 .grid-2 {
   display: flex;
 }
-.col-1{
+
+.col-1 {
   width: 60%;
 }
-.col-2{
-  border-left:1px solid rgb(215, 215, 215);
+
+.col-2 {
+  border-left: 1px solid rgb(215, 215, 215);
   padding-left: 40px;
   width: 40%;
 }
-.qr_wrapper{
+
+.qr_wrapper {
   text-align: center;
   margin-top: 50px;
 }
-.col-2 img{
+
+.col-2 img {
   width: auto;
-  
+
 }
+
 .my-1 {
   margin: 1rem 0;
 }
@@ -268,7 +265,7 @@ input[name='lname']{
 }
 
 
-.btn-second{
+.btn-second {
   background-color: transparent;
   border-radius: 4px;
   border: 1px solid rgb(215, 215, 215);
@@ -314,7 +311,7 @@ input[name='lname']{
   color: #fff;
 }
 
-.alert-test{
+.alert-test {
   background: var(--text-color);
   color: #000;
 }
@@ -341,26 +338,34 @@ input[name='lname']{
   color:#000;
 } */
 
+.resultmsg h2,h3{
+  color:gray;
+}
 
 @media only screen and (max-width: 1100px) {
   #root {
     padding: 50px 20px 20px;
   }
+
   .navbar a {
     padding: 9px;
     height: 100%;
   }
+
   .container {
     padding: 0;
   }
+
   .large {
     font-size: 40px;
   }
-  input[name='fname']{
+
+  input[name='fname'] {
     display: inline;
     width: 100%;
   }
-  input[name='lname']{
+
+  input[name='lname'] {
     display: inline;
     width: 100%;
   }
@@ -368,14 +373,21 @@ input[name='lname']{
   .grid-2 {
     flex-direction: column;
   }
-  .col-1{
+
+  .col-1 {
     width: 100%;
   }
-  .col-2{
+
+  .col-2 {
     margin-top: 50px;
     width: 100%;
-    border:0;
+    border: 0;
     padding-left: 0;
   }
-  
+
+  .resultmsg .btn{
+    display: block;
+    width: 100%;
+  }
+
 }
