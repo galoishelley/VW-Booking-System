@@ -71,7 +71,6 @@ const Datepicker = () => {
 
     let orderedDateTime = [];
 
-
     for (let i = 0; i < arrAppoint.length; i++) {
       if (arrAppoint[i].date === fDate) {
         orderedDateTime.push(arrAppoint[i].time);

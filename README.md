@@ -8,16 +8,15 @@ task is to build a spar booking system
 ## Setup
 
 ```
-git clone git@github.com:digivizer/frontend.git
+git clone git@github.com:galoishelley/VW-Booking-System.git
 
-cd frontend && npm install
+cd VW-Booking-System && npm install
 
-cp .env.example .env
 ```
 
 ## Development Server
 
-This launches a reactive hot-reloadable development server/client environment on `localhost:8000`.
+This launches a reactive hot-reloadable development server/client environment on `localhost:3000`.
 
 ```
 npm start
