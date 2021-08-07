@@ -79,7 +79,7 @@ const Datepicker = () => {
     }
 
     //have ordered time
-    setTmpTime(cTime);
+    // setTmpTime(cTime);
     setSelectedTime(orderedDateTime);
     
 

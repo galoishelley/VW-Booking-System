@@ -92,6 +92,10 @@ const AppointState = props => {
       {
         date: '08-10-2021',
         time: '3:00pm'
+      },
+      {
+        date: '08-11-2021',
+        time: '10:00am'
       }
     ],
     timeArr: ['10:00am', '10:30am', '11:00am', '11:30am', '12:00am', '12:30am', '1:00pm', '1:30pm', '2:00pm', '2:30pm', '3:00pm', '3:30pm', '4:00pm'],

@@ -13,14 +13,15 @@ const Timepicker = () => {
     const appointContext = useContext(AppointContext);
     const { timeArr, selectedTime, setCurrentStep, order, setOrderTime, tmpTime, setTmpTime } = appointContext;
 
-    const t = tmpTime;
+    // setTmpTime(timeArr);
+    const t = [...timeArr];
 
     //const times
     useEffect(() => {
 
-        setTmpTime(timeArr);
-
-        //delete have booked time
+        //delete have booked time, get avaliable time
+        //selectedTime is have ordered
+        console.log(selectedTime);
         selectedTime.map(time => {
             for (let i = 0; i < time.length; i++) {
                 const index = t.indexOf(time[i]);
@@ -30,6 +31,7 @@ const Timepicker = () => {
             }
         });
 
+        //avaliable time
         setTmpTime(t);
 
         //eslint-disable-next-line
@@ -60,7 +62,7 @@ const Timepicker = () => {
         <div className="Timepicker">
             <ul>
                 {
-                    t && t.map(time => (
+                    tmpTime && tmpTime.map(time => (
                         <li key={time}><input type="radio" value={time} id={time} name="app_time" onChange={onChange} /><label htmlFor={time}>{time}</label></li>
                     ))
 
